@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domain-coloring</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        color: white;
+      }
+      html {
+        background-color: black;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #latex-input {
+        width: 300px;
+        height: 30px;
+        padding-left: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d5d5d5;
+        color: black;
+        outline: none;
+      }
+      #container {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: black;
+      }
+      #update-button {
+        width: 100px;
+        height: 30px;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 10px;
+      }
+    </style>
+    <script src="./bundle.js" async></script>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+    ></script>
+    <script>
+      window.addEventListener("load", () => {
+        const latexInput = document.getElementById("latex-input");
+        const latexDisplay = document.getElementById("latex-display");
+
+        latexInput.addEventListener("input", () => {
+          let latex = latexInput.value;
+
+          latex = latex.replace(/\\\(|\\\)|\\\[|\\\]|\$/g, "");
+          latexDisplay.textContent = `\\(f(z) = ${latex}\\)`;
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub, latexDisplay]);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="container">
+      <input id="latex-input" type="text" value="z" autocomplete="off" />
+      <p id="latex-display">\(f(z) = z\)</p>
+      <input id="update-button" type="submit" value="Update" />
+    </form>
+  </body>
+</html>
