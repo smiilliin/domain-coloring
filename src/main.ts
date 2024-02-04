@@ -204,6 +204,14 @@ app.stage.on("wheel", (event) => {
 
   viewMoved();
 });
+window.addEventListener(
+  "wheel",
+  (e) => {
+    e.preventDefault();
+  },
+  { passive: false }
+);
+
 const latexInput = document.getElementById("latex-input") as HTMLInputElement;
 
 function latexInputUpdated() {
