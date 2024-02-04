@@ -31,6 +31,8 @@ class Chunk extends PIXI.Graphics {
     this.hidden = true;
   }
   update(f: PolynomialFunction) {
+    if (this.hidden) return;
+
     for (let y = 0; y < chunkSize; y++) {
       for (let x = 0; x < chunkSize; x++) {
         const a = (this.vector.x * chunkSize + x) / (chunkSize / 2);
@@ -61,19 +63,18 @@ class Chunk extends PIXI.Graphics {
         this.endFill();
       }
     }
-    this.hidden = false;
   }
   hide(view: PIXI.Container) {
     if (this.hidden) return;
+    this.hidden = true;
     this.clear();
     view.removeChild(this);
-    this.hidden = true;
   }
   show(view: PIXI.Container, f: PolynomialFunction) {
     if (!this.hidden) return;
+    this.hidden = false;
     this.update(f);
     view.addChild(this);
-    this.hidden = false;
   }
 }
 class World {
