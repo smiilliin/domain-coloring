@@ -24,6 +24,10 @@ Enter latex syntax in a formula box on the top left
 - e($e$) : euler's constant
 - i($i$): $\sqrt(-1)$
 
+### Fraction
+
+- \frac($\frac{a}{b}$) : fraction
+
 ### Examples
 
 - $f(z)=z^z$
